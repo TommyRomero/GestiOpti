@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from paciente.models import Paciente
-from .forms import PacienteForm
+from paciente.models import Paciente,Turnos
+from .forms import PacienteForm,TurnosForm
 
 # Create your views here.
 
@@ -34,3 +34,28 @@ def create(request):
              
     else:
         return render(request,"paciente/create.html",{"form":form})
+
+def turnos(request):
+    turnos = Turnos.objects.all()
+    return render(request, "turnos/dashboard.html",{"turnos":turnos})
+
+def turnoscreate(request):
+    form=TurnosForm()
+    if request.method == 'POST':
+        form = TurnosForm(request.POST)
+        if form.is_valid():
+
+             t = Turnos(
+                 id_paciente=form.cleaned_data['id_paciente'],
+                 id_usuario=form.cleaned_data['id_usuario'],
+                 fecha=form.cleaned_data['fecha'],
+                 hora=form.cleaned_data['hora'],
+                 asistencia=form.cleaned_data['asistencia']
+             )
+             t.save()
+             return HttpResponseRedirect(reverse("turnos"))
+             
+    else:
+        return render(request,"turnos/create.html",{"form":form})
+
+
