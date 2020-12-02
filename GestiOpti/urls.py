@@ -25,4 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('paciente/', paciente.dashboard,name="paciente"),
     path('paciente/create', paciente.create,name="create"),
+    path('turnos/', paciente.turnos,name="turnos"),
+    path('turnoscreate/', paciente.turnoscreate,name="turnoscreate"),
 ]

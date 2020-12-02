@@ -1,0 +1,48 @@
+{% extends "users/layout.html" %}
+
+{% block body %}
+
+<h1>Dashboard Turnos</h1>
+
+<a href="{% url 'turnoscreate' %}" class="btn btn-info" style="float:right"><i class="fa fa-plus"></i> Add Turno</a>
+
+<table id="paciente" class="table table-condensed">
+
+        <thead>
+            <tr>
+                <th>Acciones</th>
+                <th>Paciente</th>
+                <th>Profesional Médico</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Asitió</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for turno in turnos %}
+               <tr>
+                   <td>
+                       <a href=""><i class="fa fa-edit"></i></a>
+                       <a href=""><i class="fa fa-remove"></i></a>
+                   </td>
+                   <td>{{turno.id_paciente.nombre}}</td>
+                   <td>{{turno.id_usuario.username}}</td>
+                   <td>{{turno.fecha}}</td>
+                   <td>{{turno.hora}}</td>
+
+                   <td>{% if turno.asistencia == 1 %}
+                          Si 
+                        {% else %} 
+                          No
+                        {% endif %}  
+                   </td>
+               </tr>
+            {% endfor %}
+
+        </tbody>
+
+
+</table>
+
+
+{% endblock %}

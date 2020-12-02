@@ -15,5 +15,8 @@ class User(AbstractUser):
       #Mostar campo requerido al crear user en consola 
       REQUIRED_FIELDS = ['rol','email']
 
+      def __str__(self):
+        return self.username + " " + self.last_name
+
 
 
