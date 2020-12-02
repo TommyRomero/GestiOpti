@@ -1,0 +1,50 @@
+{% extends "users/layout.html" %}
+
+{% block body %}
+
+<h1>Dashboard Paciente</h1>
+
+<a href="{% url 'create' %}" class="btn btn-info" style="float:right"><i class="fa fa-plus"></i> Add Paciente</a>
+
+<table id="paciente" class="table table-condensed">
+
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Género</th>
+                <th>Email</th>
+                <th>Estatura</th>
+                <th>Peso</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paciente in pacientes %}
+               <tr>
+                   <td>{{paciente.documentoIdentidad}}</td>
+                   <td>{{paciente.nombre}}</td>
+                   <td>{{paciente.apellido}}</td>
+                   <td>{{paciente.edad}}</td>
+                   <td>{{paciente.fechaNacimiento}}</td>
+                   <td>{{paciente.genero}}</td>
+                   <td>{{paciente.email}}</td>
+                   <td>{{paciente.estatura}}</td>
+                   <td>{{paciente.peso}}</td>
+               </tr>
+            {% endfor %}
+
+        </tbody>
+
+
+</table>
+
+<script>
+//     $(document).ready( function () {
+//     $('#paciente').DataTable();
+// });
+</script>
+
+{% endblock %}
