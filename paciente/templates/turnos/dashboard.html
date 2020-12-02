@@ -4,7 +4,7 @@
 
 <h1>Dashboard Turnos</h1>
 
-<a href="{% url 'turnoscreate' %}" class="btn btn-info" style="float:right"><i class="fa fa-plus"></i> Add Turno</a>
+<a href="{% url 'turnos_create' %}" class="btn btn-info" style="float:right"><i class="fa fa-plus"></i> Add Turno</a>
 
 <table id="paciente" class="table table-condensed">
 
@@ -22,10 +22,10 @@
             {% for turno in turnos %}
                <tr>
                    <td>
-                       <a href=""><i class="fa fa-edit"></i></a>
-                       <a href=""><i class="fa fa-remove"></i></a>
+                       <a href="{% url 'turnos_edit' turno.id %}"><i class="fa fa-edit"></i></a>
+                       <a href="{% url 'turnos_delete' turno.id %}" onclick="return deleteTurno()"><i class="fa fa-remove"></i></a>
                    </td>
-                   <td>{{turno.id_paciente.nombre}}</td>
+                   <td>{{turno.id_paciente.nombre}} {{turno.id_paciente.apellido }}</td>
                    <td>{{turno.id_usuario.username}}</td>
                    <td>{{turno.fecha}}</td>
                    <td>{{turno.hora}}</td>
@@ -44,5 +44,11 @@
 
 </table>
 
-
+<script>
+    function deleteTurno()
+    {
+        return confirm("¿Estas seguro de eliminar este turno?")
+    }
+  
+</script>
 {% endblock %}
