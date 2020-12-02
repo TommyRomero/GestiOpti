@@ -1,4 +1,6 @@
 from django.db import models
+from users.models import User
+from .managers import ChildManager
 
 # Create your models here.
 class Paciente(models.Model):
@@ -18,4 +20,25 @@ class Paciente(models.Model):
     estatura=models.DecimalField(max_digits=6,decimal_places=2)
     peso=models.DecimalField(max_digits=6,decimal_places=2)
 
+    def __str__(self):
+        return self.nombre + " " + self.apellido
+
+class Turnos(models.Model):
+    ASISTENCIA_CHOICES = (
+        (1,"SI"),
+        (2,"NO")
+    )
+    id_paciente=models.ForeignKey(Paciente,on_delete=models.CASCADE)
+    id_usuario=models.ForeignKey(User,on_delete=models.CASCADE)
+    fecha=models.DateField()
+    hora=models.TimeField()
+    asistencia=models.PositiveSmallIntegerField(choices=ASISTENCIA_CHOICES)
+
+#PROXY MODEL 
+class ChildTurno(Turnos):
+    objects = ChildManager()
+    class Meta:
+        proxy = True
     
+
+

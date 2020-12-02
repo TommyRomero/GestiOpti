@@ -1,20 +1,18 @@
 from django import forms
+from paciente.models import Paciente,Turnos
+from users.models import User
 
 
-class PacienteForm(forms.Form):
-    GENERO_TYPE_CHOICES = (
-        ('F',"FEMENINO"),
-        ('M',"MASCULINO")
-    )
-    nombre = forms.CharField(max_length=100)
-    apellido = forms.CharField()
-    edad = forms.IntegerField()
-    fechaNacimiento = forms.DateField()
-    email = forms.EmailField()
-    genero = forms.ChoiceField(choices=GENERO_TYPE_CHOICES)
-    telefono =forms.CharField()
-    direccion=forms.CharField(max_length=300)
-    documentoIdentidad=forms.CharField()
-    estatura=forms.DecimalField(max_digits=6,decimal_places=2)
-    peso=forms.DecimalField(max_digits=6,decimal_places=2)
-
+class PacienteForm(forms.ModelForm):
+    class Meta:
+          model = Paciente
+          fields =  "__all__"
+  
+class TurnosForm(forms.ModelForm):
+    class Meta:
+          model = Turnos
+          widgets = {
+            'fecha': forms.DateInput(attrs={'class':'datepicker'}),
+          }
+          fields = '__all__'
+          
