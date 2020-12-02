@@ -26,5 +26,7 @@ urlpatterns = [
     path('paciente/', paciente.dashboard,name="paciente"),
     path('paciente/create', paciente.create,name="create"),
     path('turnos/', paciente.turnos,name="turnos"),
-    path('turnoscreate/', paciente.turnoscreate,name="turnoscreate"),
+    path('turnos_create/', paciente.turnos_create,name="turnos_create"),
+    path('turnos_edit/<int:id>', paciente.turnos_edit,name="turnos_edit"),
+    path('turnos_delete/<int:id>', paciente.turnos_delete,name="turnos_delete"),
 ]
