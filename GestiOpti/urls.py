@@ -1,4 +1,4 @@
-"""GestiOpti URL Configuration
+"""ProyectoFinal URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from users import views
+from paciente import views as paciente
 
 urlpatterns = [
+    path('', views.welcome),
+    path('login', views.login_view,name="login"),
+    path('logout', views.logout_view,name="logout"),
     path('admin/', admin.site.urls),
+    path('paciente/', paciente.dashboard,name="paciente"),
+    path('paciente/create', paciente.create,name="create"),
 ]
