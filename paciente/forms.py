@@ -12,7 +12,8 @@ class TurnosForm(forms.ModelForm):
     class Meta:
           model = Turnos
           widgets = {
-            'fecha': forms.DateInput(attrs={'class':'datepicker'}),
+            'fecha': forms.DateInput(attrs={'class':'datepicker','type':'Date'}),
+            'hora': forms.DateInput(attrs={'class':'timepicker','type':'Time'}),
           }
           fields = '__all__'
           
