@@ -14,13 +14,18 @@
         <div class="col-3">
                 <label>Mes</label>
                 <select type="text" name="month" class="form-control">
-                    {% for month in months %}
-                    <option value="{{month.key}}">{{month.value}}</option> 
+                    {% for key,value in months %}
+                    <option value="{{key}}">{{value}}</option> 
                     {% endfor %}
                 </select>
         </div>
         <div class="col-3">
-                <label>Año</label><input type="text" name="year" class="form-control" value=""/> 
+                <label>Año</label>
+                <select type="text" name="month" class="form-control">
+                    {% for key,value in years %}
+                    <option value="{{key}}">{{value}}</option> 
+                    {% endfor %}
+                </select>
         </div>
         <div class="col-3">
             <br><input type="submit" class="btn btn-info" value="Buscar"/> 

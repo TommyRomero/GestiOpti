@@ -4,6 +4,8 @@ from django.urls import reverse
 from paciente.models import Paciente,Turnos,HistorialMedico
 from .forms import PacienteForm,TurnosForm,HistorialMedicoForm
 from users.models import User
+from django.utils.translation import get_language, activate
+from django.utils.dates import MONTHS
 
 # Create your views here.
 
@@ -71,14 +73,13 @@ def turnos_delete(request,id):
 
 def info(request):
     pacientes = Turnos.objects.filter(id_usuario=request.user.id).all()
-    MONTH_CHOICES = (
-    ('01', 'Enero'),
-    ('02', 'Febrero'),
-    ('03', 'Marzo'),
-    )
+    activate('es')
+    month_choices = MONTHS.items()
+    year_choices = [(i, i) for i in range(2020,2050)]
     contexto = {
         'pacientes':pacientes,
-        'months':MONTH_CHOICES,
+        'months':month_choices,
+        'years':year_choices
     }
     print(contexto)
     return render(request,"medico/dashboard.html",contexto)
