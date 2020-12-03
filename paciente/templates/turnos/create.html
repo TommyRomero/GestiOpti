@@ -1,4 +1,4 @@
-{% extends "users/layout.html" %}
+{% extends "layout.html" %}
 {% load crispy_forms_tags %}
 
 {% block body %}
@@ -8,6 +8,4 @@
     {{ form|crispy }}
     <input type="submit" value="Guardar" class="btn btn-success text-center"> 
 </form> 
-
-
 {% endblock %}
