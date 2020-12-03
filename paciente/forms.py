@@ -1,5 +1,5 @@
 from django import forms
-from paciente.models import Paciente,Turnos
+from paciente.models import Paciente,Turnos,HistorialMedico
 from users.models import User
 
 
@@ -15,4 +15,11 @@ class TurnosForm(forms.ModelForm):
             'fecha': forms.DateInput(attrs={'class':'datepicker'}),
           }
           fields = '__all__'
+
+class HistorialMedicoForm(forms.ModelForm):
+      motivo = forms.CharField(widget=forms.Textarea)
+      observaciones = forms.CharField(widget=forms.Textarea)
+      class Meta:
+          model = HistorialMedico
+          fields = ('motivo','observaciones')
           
