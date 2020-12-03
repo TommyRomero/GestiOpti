@@ -1,0 +1,65 @@
+{% extends "users/layout.html" %}
+
+{% block body %}
+
+<h2 class="justify-content-center">Dashboard Paciente-Médico</h2>
+
+<h5>Filtrar por : </h5>
+<form method="POST">
+    <div class="row col-12">
+        {% csrf_token %}
+        <div class="col-3">
+                <label>Dia</label><input type="text" name="day" class="form-control" value=""/> 
+        </div>
+        <div class="col-3">
+                <label>Mes</label>
+                <select type="text" name="month" class="form-control">
+                    {% for month in months %}
+                    <option value="{{month.key}}">{{month.value}}</option> 
+                    {% endfor %}
+                </select>
+        </div>
+        <div class="col-3">
+                <label>Año</label><input type="text" name="year" class="form-control" value=""/> 
+        </div>
+        <div class="col-3">
+            <br><input type="submit" class="btn btn-info" value="Buscar"/> 
+        </div>
+   </div>
+</form>
+<br>
+
+<table id="paciente" class="table table-condensed">
+
+        <thead>
+            <tr>
+                <th>Historial</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Género</th>
+                <th>Estatura</th>
+                <th>Peso</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paciente in pacientes %}
+               <tr>
+                   <td>
+                       <a href="{% url 'historial' paciente.id %}" title="Añadir historial"><i class="fa fa-plus"></i></a>
+                       <!-- <a href="" onclick="return deleteTurno()"><i class="fa fa-remove"></i></a> -->
+                   </td>
+                   <td>{{paciente.id_paciente.nombre}} {{paciente.id_paciente.apellido }}</td>
+                   <td>{{paciente.id_paciente.edad}}</td>
+                   <td>{{paciente.id_paciente.genero}}</td>
+                   <td>{{paciente.id_paciente.estatura}}</td>
+                   <td>{{paciente.id_paciente.peso}}</td>
+               </tr>
+            {% endfor %}
+
+        </tbody>
+
+
+</table>
+
+
+{% endblock %}

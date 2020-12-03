@@ -1,0 +1,14 @@
+{% extends "users/layout.html" %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+ <form method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="hidden" name="id_turno" value="{{id}}"/>
+    <br> 
+    <input type="submit" value="Guardar" class="btn btn-success text-center"> 
+</form> 
+
+{% endblock %}
