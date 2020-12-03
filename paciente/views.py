@@ -19,8 +19,14 @@ def create(request):
     if request.method == 'POST':
         form = PacienteForm(request.POST)
         if form.is_valid():
-           form.save()
-           return HttpResponseRedirect(reverse("paciente"))
+            form.save()
+            return HttpResponseRedirect(reverse("paciente"))
+        else:
+            contexto = {
+                'form':form
+            }
+            return render(request,"paciente/create.html",contexto)
+
              
     else:
         return render(request,"paciente/create.html",contexto)
