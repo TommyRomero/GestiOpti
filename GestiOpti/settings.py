@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'users',
     'paciente',
-    
+    'GestionPedido'
 ]
 
 AUTH_USER_MODEL = 'users.User'
