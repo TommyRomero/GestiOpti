@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h1>Dashboard Pedidos</h1>
+
+
+{% if request.user.rol == 3 %}
+   <a href="{% url 'pedidos_create' %}" class="btn btn-info" style="float:right"><i class="fa fa-plus"></i> Add Pedido</a>
+{% endif %}
+
+<table id="pedido" class="table table-condensed">
+
+        <thead>
+            <tr>
+                <th>Nro Pedido</th>
+                <th>Paciente</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pedido in pedidos %}
+               <tr>
+                   <td>{{pedido.Id}}</td>
+                   <td>{{pedido.id_paciente.nombre}} {{pedido.id_paciente.apellido }}</td>
+                   <td>{{pedido.estado}}</td>
+               </tr>
+            {% endfor %}
+
+        </tbody>
+
+
+</table>
+
+<script>
+//     $(document).ready( function () {
+//     $('#paciente').DataTable();
+// });
+</script>
+
+{% endblock %}
