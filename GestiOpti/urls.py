@@ -29,4 +29,6 @@ urlpatterns = [
     path('turnos_create/', paciente.turnos_create,name="turnos_create"),
     path('turnos_edit/<int:id>', paciente.turnos_edit,name="turnos_edit"),
     path('turnos_delete/<int:id>', paciente.turnos_delete,name="turnos_delete"),
+    path('info', paciente.info,name="info"),
+    path('paciente/historial/<int:id>', paciente.historial,name="historial")
 ]

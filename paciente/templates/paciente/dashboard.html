@@ -4,7 +4,10 @@
 
 <h1>Dashboard Paciente</h1>
 
-<a href="{% url 'create' %}" class="btn btn-info" style="float:right"><i class="fa fa-plus"></i> Add Paciente</a>
+
+{% if request.user.rol == 1 %}
+   <a href="{% url 'create' %}" class="btn btn-info" style="float:right"><i class="fa fa-plus"></i> Add Paciente</a>
+{% endif %}
 
 <table id="paciente" class="table table-condensed">
 

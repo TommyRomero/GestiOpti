@@ -1,6 +1,5 @@
 from django.db import models
 from users.models import User
-from .managers import ChildManager
 
 # Create your models here.
 class Paciente(models.Model):
@@ -28,17 +27,19 @@ class Turnos(models.Model):
         (1,"SI"),
         (2,"NO")
     )
-    id_paciente=models.ForeignKey(Paciente,on_delete=models.CASCADE)
+    id_paciente=models.ForeignKey(Paciente,on_delete=models.CASCADE,related_name="paciente")
     id_usuario=models.ForeignKey(User,on_delete=models.CASCADE)
     fecha=models.DateField()
     hora=models.TimeField()
     asistencia=models.PositiveSmallIntegerField(choices=ASISTENCIA_CHOICES)
 
-#PROXY MODEL 
-class ChildTurno(Turnos):
-    objects = ChildManager()
-    class Meta:
-        proxy = True
+
+class HistorialMedico(models.Model):
+    id_turno=models.ForeignKey(Turnos,on_delete=models.CASCADE,related_name="turno")
+    motivo=models.CharField(max_length=2000)
+    observaciones=models.CharField(max_length=2000)
+
+
     
 
 
