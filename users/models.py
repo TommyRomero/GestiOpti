@@ -12,11 +12,16 @@ class User(AbstractUser):
   )
 
       rol = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
+      especialidad = models.TextField(max_length=200,default="")
       #Mostar campo requerido al crear user en consola 
-      REQUIRED_FIELDS = ['rol','email']
+      REQUIRED_FIELDS = ['rol','especialidad','first_name','last_name','email']
 
       def __str__(self):
-        return self.username + " " + self.last_name
+        if self.rol == 2:
+          return self.first_name + " " + self.last_name + " - " + (self.especialidad if self.especialidad!="" else "Sin Especialidad")
+        else:
+          return self.first_name + " " + self.last_name
+          
 
 
 
